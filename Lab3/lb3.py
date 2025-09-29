@@ -21,7 +21,7 @@ def remove_noise_and_sharpen(image_path, noise_reduction_method, sharpen_method)
 
 def apply_noise_reduction(image, method):
 
-    denoised = cv2.fastNlMeansDenoisingColored(image, None, 10, 10, 7, 21)
+    denoised = cv2.GaussianBlur(image, (7, 7), 0) #cv2.fastNlMeansDenoisingColored(image, None, 10, 10, 7, 21)
     
     return denoised
 
