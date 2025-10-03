@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 def remove_noise_and_sharpen(image_path, noise_reduction_method, sharpen_method):
    
-    image = cv2.imread(image_path)
+    image = 255 - cv2.imread(image_path)
     
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     
