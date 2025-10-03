@@ -4,14 +4,18 @@ from matplotlib import pyplot as plt
 
 def histogram_equalization(image):
 
+    if len(image.shape) == 3:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
     hist, bins = np.histogram(image.flatten(), bins=256, range=[0, 256])
     
     cdf = hist.cumsum()
+    
     cdf_normalized = np.zeros_like(cdf, dtype=np.float64)
     
     mask = cdf > 0
     cdf_normalized[mask] = 255 * cdf[mask] / cdf[-1]
-
+    
     lut = np.round(cdf_normalized).astype(np.uint8)
     
     equalized = lut[image]
